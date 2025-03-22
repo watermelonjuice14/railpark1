@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover Follow Image</title>
+    <style>
+        .hover-container {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .hover-text {
+            position: relative;
+            font-size: 20px; /* Adjust text size as needed */
+        }
+
+        .hover-image {
+            position: absolute;
+            width: 200px; /* Set image size */
+            height: 150px; /* Set image size */
+            opacity: 0; /* Initially hidden */
+            pointer-events: none; /* Ensure the image does not block other interactions */
+            transition: opacity 0.3s ease; /* Smooth fade-in and fade-out effect */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hover-container">
+        <p class="hover-text">Hover over this text</p>
+        <!-- Image to appear when hovering -->
+        <img class="hover-image" src="image copy 2.png" alt="Hover Image">
+    </div>
+
+    <script>
+        const hoverContainer = document.querySelector('.hover-container');
+        const hoverImage = document.querySelector('.hover-image');
+        
+        hoverContainer.addEventListener('mouseenter', function() {
+            hoverImage.style.opacity = 1; // Show the image when mouse enters the container
+        });
+
+        hoverContainer.addEventListener('mousemove', function(e) {
+            const mouseX = e.pageX; // Get the horizontal position of the mouse
+            const mouseY = e.pageY; // Get the vertical position of the mouse
+            
+            // Update image position to follow the mouse cursor
+            hoverImage.style.left = mouseX - hoverImage.width / 2 + 'px';
+            hoverImage.style.top = mouseY - hoverImage.height / 2 + 'px';
+        });
+
+        hoverContainer.addEventListener('mouseleave', function() {
+            hoverImage.style.opacity = 0; // Hide the image when the mouse leaves the container
+        });
+    </script>
+
+</body>
+</html>
